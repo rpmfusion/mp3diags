@@ -1,4 +1,4 @@
-%global oname   MP3Diags
+%global  oname  MP3Diags
 
 Name:           mp3diags
 Version:        1.2.03
@@ -6,10 +6,11 @@ Release:        2%{?dist}
 License:        GPLv2
 Summary:        Find and fix Problems in MP3 Files
 URL:            http://mp3diags.sourceforge.net
-Source:         http://prdownloads.sourceforge.net/mp3diags/MP3Diags-%{version}.tar.gz
+Source:         http://prdownloads.sourceforge.net/%{name}/%{oname}-%{version}.tar.gz
 Patch0:         mp3diags-system-lib.patch
 
 BuildRequires:  boost-devel
+BuildRequires:  desktop-file-utils
 BuildRequires:  qt4-devel
 BuildRequires:  zlib-devel
 BuildRequires:  glibc-devel
@@ -28,30 +29,29 @@ based on the fields in their ID3V2 tag (artist, track number, album, genre,
 etc.).
 
 %prep
-%autosetup -p0 -n "MP3Diags-%{version}"
+%autosetup -p0 -n %{oname}-%{version}
 ./AdjustMt.sh
 
 %build
 # Create translation files.
-lrelease-qt4 src/translations/mp3diags_*.ts
+lrelease-qt4 src/translations/%{name}_*.ts
 %{qmake_qt4}
 %make_build
 
 %install
-# main executable
 install -D -m0755 bin/%{oname} %{buildroot}%{_bindir}/%{oname}
-ln -s MP3Diags "%{buildroot}%{_bindir}/mp3diags"
+ln -s MP3Diags %{buildroot}%{_bindir}/%{name}
 
-install -D -m0644 desktop/MP3Diags.desktop "%{buildroot}%{_datadir}/applications/%{name}.desktop"
+install -D -m0644 desktop/%{oname}.desktop %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # icons
 for i in "16" "22" "24" "32" "36" "40" "48"; do
-        mkdir -p "%{buildroot}/%{_datadir}/icons/hicolor/${i}x${i}/apps"
-        install -p -m644 "desktop/MP3Diags${i}.png" "%{buildroot}/%{_datadir}/icons/hicolor/${i}x${i}/apps/MP3Diags.png"
+        mkdir -p %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps
+        install -p -m644 desktop/%{oname}${i}.png %{buildroot}%{_datadir}/icons/hicolor/${i}x${i}/apps/%{oname}.png
 done
 
-mkdir -p %{buildroot}/usr/share/%{name}/translations
-install -p -m644 src/translations/*.qm %{buildroot}/%{_datadir}/%{name}/translations
+mkdir -p %{buildroot}%{_datadir}/%{name}/translations
+install -p -m644 src/translations/*.qm %{buildroot}%{_datadir}/%{name}/translations
 %find_lang %{name} --with-qt
 
 %check
@@ -73,17 +73,17 @@ fi
 
 %files -f %{name}.lang
 %doc README.TXT changelog.txt
-%license license.boost.* COPYING
-%{_bindir}/mp3diags
-%{_bindir}/MP3Diags
+%license license.*.txt COPYING
+%{_bindir}/%{name}
+%{_bindir}/%{oname}
 %{_datadir}/applications/%{name}.desktop
-%{_datadir}/icons/hicolor/*/apps/MP3Diags.png
+%{_datadir}/icons/hicolor/*/apps/%{oname}.png
 %dir %{_datadir}/%{name} 
 %dir %{_datadir}/%{name}/translations
 
 %changelog
 * Thu Oct 13 2016 Martin Gansser <martinkg@fedoraproject.org> - 1.2.03-2
-- remove BR make gcc-c++
+- Remove BR make gcc-c++
 
 * Sat Jul 30 2016 Martin Gansser <martinkg@fedoraproject.org> - 1.2.03-1
-- initial build
+- Initial build
