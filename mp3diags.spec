@@ -2,7 +2,7 @@
 
 Name:           mp3diags
 Version:        1.2.03
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        GPLv2
 Summary:        Find and fix Problems in MP3 Files
 URL:            http://mp3diags.sourceforge.net
@@ -82,6 +82,9 @@ fi
 %dir %{_datadir}/%{name}/translations
 
 %changelog
+* Mon Mar 20 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 1.2.03-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+
 * Thu Oct 13 2016 Martin Gansser <martinkg@fedoraproject.org> - 1.2.03-2
 - Remove BR make gcc-c++
 
