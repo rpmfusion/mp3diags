@@ -1,0 +1,11 @@
+--- src/Mp3TransformThread.cpp.orig	2017-03-24 15:52:14.023935154 +0100
++++ src/Mp3TransformThread.cpp	2017-03-24 15:52:55.129795548 +0100
+@@ -662,7 +662,7 @@
+     {
+         qDebug("Caught std::exception in Mp3TransformThread::transform()");
+         traceToFile("Caught std::exception in Mp3TransformThread::transform()", 0);
+-        qDebug(ex.what());
++        qDebug("ex.what()");
+         traceToFile(ex.what(), 0);
+         throw; // !!! needed to restore "erased" files when errors occur, because when an exception is thrown the destructors only get called if that exception is caught; so catching and rethrowing is not a "no-op"
+     }

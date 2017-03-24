@@ -7,7 +7,8 @@ License:        GPLv2
 Summary:        Find and fix Problems in MP3 Files
 URL:            http://mp3diags.sourceforge.net
 Source:         http://prdownloads.sourceforge.net/%{name}/%{oname}-%{version}.tar.gz
-Patch0:         mp3diags-system-lib.patch
+Patch0:         %{name}-system-lib.patch
+Patch1:         %{name}-literal.patch
 
 BuildRequires:  boost-devel
 BuildRequires:  desktop-file-utils
