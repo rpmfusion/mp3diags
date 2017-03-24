@@ -82,8 +82,8 @@ fi
 %dir %{_datadir}/%{name}/translations
 
 %changelog
-* Mon Mar 20 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 1.2.03-3
-- Rebuilt for https://fedoraproject.org/wiki/Fedora_26_Mass_Rebuild
+* Fri Mar 24 2017 Martin Gansser <martinkg@fedoraproject.org> - 1.2.03-3
+- Add %%{name}-literal.patch
 
 * Thu Oct 13 2016 Martin Gansser <martinkg@fedoraproject.org> - 1.2.03-2
 - Remove BR make gcc-c++
