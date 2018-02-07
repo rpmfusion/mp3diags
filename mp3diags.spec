@@ -2,7 +2,7 @@
 
 Name:           mp3diags
 Version:        1.2.03
-Release:        4%{?dist}
+Release:        5%{?dist}
 License:        GPLv2
 Summary:        Find and fix Problems in MP3 Files
 URL:            http://mp3diags.sourceforge.net
@@ -58,20 +58,6 @@ install -p -m644 src/translations/*.qm %{buildroot}%{_datadir}/%{name}/translati
 %check
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
-%post
-/bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
-/usr/bin/update-desktop-database &> /dev/null || :
-
-%postun
-/usr/bin/update-desktop-database &> /dev/null || :
-if [ $1 -eq 0 ] ; then
-    /bin/touch --no-create %{_datadir}/icons/hicolor &>/dev/null
-    /usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-fi
-
-%posttrans
-/usr/bin/gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
-
 %files -f %{name}.lang
 %doc README.TXT changelog.txt
 %license license.*.txt COPYING
@@ -79,10 +65,14 @@ fi
 %{_bindir}/%{oname}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{oname}.png
-%dir %{_datadir}/%{name} 
-%dir %{_datadir}/%{name}/translations
+%{_datadir}/%{name}/
+
 
 %changelog
+* Wed Feb 07 2018 Leigh Scott <leigh123linux@googlemail.com> - 1.2.03-5
+- Rebuild for boost-1.66
+- Remove scriptlets
+
 * Thu Aug 31 2017 RPM Fusion Release Engineering <kwizart@rpmfusion.org> - 1.2.03-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Mass_Rebuild
 
