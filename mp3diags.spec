@@ -2,7 +2,7 @@
 
 Name:           mp3diags
 Version:        1.2.03
-Release:        5%{?dist}
+Release:        6%{?dist}
 License:        GPLv2
 Summary:        Find and fix Problems in MP3 Files
 URL:            http://mp3diags.sourceforge.net
@@ -69,6 +69,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 
 %changelog
+* Thu Mar 01 2018 RPM Fusion Release Engineering <leigh123linux@googlemail.com> - 1.2.03-6
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Wed Feb 07 2018 Leigh Scott <leigh123linux@googlemail.com> - 1.2.03-5
 - Rebuild for boost-1.66
 - Remove scriptlets
