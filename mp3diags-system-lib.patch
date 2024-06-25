@@ -1,15 +1,15 @@
---- src/src.pro	2016-07-29 20:23:43.000000000 +0200
-+++ src/src.pro.new	2016-08-28 20:13:52.757470900 +0200
-@@ -175,7 +175,7 @@
-   -lboost_serialization-mt \
-   -lboost_program_options-mt
+--- src/src.pro.orig	2024-06-25 10:04:45.642362435 +0200
++++ src/src.pro	2024-06-25 10:05:43.483511334 +0200
+@@ -184,7 +184,7 @@
+   -lboost_serialization\
+   -lboost_program_options
  
 -#LIBS += -lmp3lame
 +LIBS += -lmp3lame
  
  # Notes for Windows gapless support:
  #   - It's hard to build Lame and prebuilt libs are not official and don't work:
-@@ -199,7 +199,7 @@
+@@ -208,7 +208,7 @@
  #
  # A dir for LAME's include should be created and inside it there should be a "lame" dir and inside it a copy of "lame.h", then the parent of "lame" should be added to the path. The reason is that the #include is for "<lame/lame.h>"
  #INCLUDEPATH += C:\\Users\\ciobi\\temp\\lame-include

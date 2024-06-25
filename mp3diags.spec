@@ -1,18 +1,18 @@
 %global  oname  MP3Diags
 
 Name:           mp3diags
-Version:        1.2.03
-Release:        20%{?dist}
+Version:        1.4.01
+Release:        1%{?dist}
 License:        GPLv2
 Summary:        Find and fix Problems in MP3 Files
 URL:            http://mp3diags.sourceforge.net
-Source:         http://prdownloads.sourceforge.net/%{name}/%{oname}-%{version}.tar.gz
+Source:         https://github.com/mciobanu/mp3diags/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Patch0:         %{name}-system-lib.patch
 Patch1:         %{name}-literal.patch
 
 BuildRequires:  boost-devel
 BuildRequires:  desktop-file-utils
-BuildRequires:  qt4-devel
+BuildRequires:  qt5-qtbase-devel
 BuildRequires:  zlib-devel
 BuildRequires:  glibc-devel
 BuildRequires:  lame-devel
@@ -30,13 +30,13 @@ based on the fields in their ID3V2 tag (artist, track number, album, genre,
 etc.).
 
 %prep
-%autosetup -p0 -n %{oname}-%{version}
+%autosetup -p0 -n %{name}-%{version}
 ./AdjustMt.sh
 
 %build
 # Create translation files.
 lrelease-qt4 src/translations/%{name}_*.ts
-%{qmake_qt4}
+%{qmake_qt5}
 %make_build
 
 %install
@@ -59,16 +59,19 @@ install -p -m644 src/translations/*.qm %{buildroot}%{_datadir}/%{name}/translati
 desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 
 %files -f %{name}.lang
-%doc README.TXT changelog.txt
-%license license.*.txt COPYING
+%doc README.md changelog.txt
+%license COPYING
 %{_bindir}/%{name}
 %{_bindir}/%{oname}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{oname}.png
-%{_datadir}/%{name}/
+#%%{_datadir}/%%{name}/
 
 
 %changelog
+* Tue Jun 25 2024 Martin Gansser <martinkg@fedoraproject.org> - 1.4.01-1
+- Update to 1.4.01
+
 * Sun Feb 04 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.2.03-20
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
 
