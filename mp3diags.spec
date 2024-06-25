@@ -35,7 +35,7 @@ etc.).
 
 %build
 # Create translation files.
-lrelease-qt4 src/translations/%{name}_*.ts
+lrelease-qt5 src/translations/%{name}_*.ts
 %{qmake_qt5}
 %make_build
 
