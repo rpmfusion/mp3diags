@@ -13,6 +13,7 @@ Patch1:         %{name}-literal.patch
 BuildRequires:  boost-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  qt5-qtbase-devel
+BuildRequires:  qt5-linguist
 BuildRequires:  zlib-devel
 BuildRequires:  glibc-devel
 BuildRequires:  lame-devel
