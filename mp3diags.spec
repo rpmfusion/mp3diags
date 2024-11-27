@@ -66,7 +66,6 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/*.desktop
 %{_bindir}/%{oname}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/*/apps/%{oname}.png
-#%%{_datadir}/%%{name}/
 
 
 %changelog
